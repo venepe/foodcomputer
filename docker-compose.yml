@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  foodcomputer:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: npm run watch
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./:/app
+    networks:
+      - private
+      - public
+
+networks:
+  public:
+  private:

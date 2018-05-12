@@ -1,0 +1,4 @@
+export default {
+  SET_CURRENT_TEMP: 'SET_CURRENT_TEMP',
+  DID_CHANGE_FAN: 'DID_CHANGE_FAN',
+};
