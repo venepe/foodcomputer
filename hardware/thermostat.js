@@ -1,7 +1,7 @@
 import { Gpio } from 'onoff';
 import Si7021 from 'si7021-sensor';
 import { setCurrentTemp, setIsFanOn } from '../actions';
-import { FAN_PIN, TARGET_TEMP, HIGH, LOW } from '../constants';
+import { FAN_PIN, TARGET_TEMP, OUT, HIGH, LOW } from '../constants';
 import { getStore, getCurrentTemp, isFanOn } from '../store';
 const si7021 = new Si7021();
 
