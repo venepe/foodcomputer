@@ -3,14 +3,15 @@ import Si7021 from 'si7021-sensor';
 import { setCurrentTemp, setIsFanOn } from '../actions';
 import { FAN_PIN, TARGET_TEMP, HIGH, LOW } from '../constants';
 import { getStore, getCurrentTemp, isFanOn } from '../store';
+const si7021 = new Si7021();
 
 export function read() {
-  return Si7021.readSensorData();
+  return si7021.readSensorData();
 }
 
 export const adjustThermostat = () => {
   let temperature_C = 23;
-  return Si7021.readSensorData()
+  return si7021.readSensorData()
     .then((data) => {
       const { humidity, temperature_C } = data;
       console.log(`data = ${JSON.stringify(data, null, 2)}`);
