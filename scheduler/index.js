@@ -1,11 +1,21 @@
 import { CronJob } from 'cron';
+import moment from 'moment';
 import { setLightOn, setLightOff } from '../hardware/light';
 import { adjustThermostat } from '../hardware/thermostat';
 import { capturePicture } from '../hardware/webcam';
 import { logSensors } from '../logger';
 const timezone = 'America/Chicago';
+const startTimeUTC = 1100;
+const endTimeUTC = 330;
 
 export function startLightSchedule() {
+
+  const now = parseInt(moment.utc().format('Hmm'));
+  if (now > startTimeUTC || now < endTimeUTC) {
+    setLightOn();
+  } else {
+    setLightOff();
+  }
 
   // Turn lights on at 6AM
   new CronJob('0 6 * * *', () => {
