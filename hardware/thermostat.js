@@ -16,7 +16,7 @@ export const adjustThermostat = () => {
       const { humidity, temperature_C } = data;
       console.log(`data = ${JSON.stringify(data, null, 2)}`);
 
-      getStore().dispatch(setCurrentTemp(23));
+      getStore().dispatch(setCurrentTemp(temperature_C));
       getStore().dispatch(setIsFanOn(true));
       console.log(getCurrentTemp(getStore()));
       console.log(isFanOn(getStore()));
@@ -56,6 +56,5 @@ export const adjustThermostat = () => {
     })
     .catch((err) => {
       console.log(`Si7021 read error: ${err}`);
-      setTimeout(readSensorData, 2000);
     });
 }
