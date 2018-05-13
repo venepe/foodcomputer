@@ -1,7 +1,8 @@
-import { Gpio } from 'onoff';
+import onoff from 'onoff';
 import constants from '../constants';
 import { logData } from '../logger';
 const { LIGHT_PIN, OUT, HIGH, LOW } = constants;
+const Gpio = onoff.Gpio;
 
 export function setLightOff() {
   const light = new Gpio(LIGHT_PIN, OUT);

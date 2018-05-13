@@ -30,11 +30,11 @@ export const adjustThermostat = () => {
 
       if (temperature_C > TARGET_TEMP) {
         const fan = new Gpio(FAN_PIN, OUT);
-        light.writeSync(HIGH);
+        fan.writeSync(HIGH);
         console.log('Fan On');
       } else {
         const fan = new Gpio(FAN_PIN, OUT);
-        light.writeSync(LOW);
+        fan.writeSync(LOW);
         currentFanOn = false;
         console.log('Fan Off');
       }
