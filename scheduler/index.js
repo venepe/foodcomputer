@@ -8,7 +8,7 @@ const timezone = 'America/Chicago';
 export function startLightSchedule() {
 
   // Turn lights on at 6AM
-  new CronJob('0 6 * * *', () {
+  new CronJob('0 6 * * *', () => {
     setLightOn();
   }, () => {
     console.log('Light On schedule cron job stopped');
@@ -18,7 +18,7 @@ export function startLightSchedule() {
   );
 
   // Turn lights off at 22:30 (10:30PM)
-  new CronJob('30 22 * * *', () {
+  new CronJob('30 22 * * *', () => {
     setLightOff();
   }, () => {
     console.log('Light Off schedule cron job stopped');
@@ -31,7 +31,7 @@ export function startLightSchedule() {
 export function startThermostatSchedule() {
 
   // Check thermostat every minute
-  new CronJob('*/1 * * * *', () {
+  new CronJob('*/1 * * * *', () => {
     adjustThermostat();
   }, () => {
     console.log('Thermostat schedule cron job stopped');
@@ -44,7 +44,7 @@ export function startThermostatSchedule() {
 export function startWebCamSchedule() {
 
   // Take a USB camera picture one minute after the hour from 6am to 10pm
-  new CronJob('1 6-22 * * *', () {
+  new CronJob('1 6-22 * * *', () => {
     capturePicture();
   }, () => {
     console.log('WebCam schedule cron job stopped');
@@ -57,7 +57,7 @@ export function startWebCamSchedule() {
 export function startLoggingSensorsSchedule() {
 
   // Log the sensors every 20 minutes
-  new CronJob('*/20 * * * *', () {
+  new CronJob('*/20 * * * *', () => {
     capturePicture();
   }, () => {
     console.log('Logging Sensors schedule cron job stopped');
