@@ -3,16 +3,19 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import path from 'path';
 import { initStore } from './store'
-import { startLightSchedule, startThermostatSchedule,
-  startWebCamSchedule, startLoggingSensorsSchedule } from './scheduler';
+// import { startLightSchedule, startThermostatSchedule,
+//   startWebCamSchedule, startLoggingSensorsSchedule } from './scheduler';
+import webcam from './hardware/webcam';
 const port = 8080;
 
 initStore();
 
-startLightSchedule();
-startThermostatSchedule();
-startWebCamSchedule();
-startLoggingSensorsSchedule();
+webcam.capturePicture();
+
+// startLightSchedule();
+// startThermostatSchedule();
+// startWebCamSchedule();
+// startLoggingSensorsSchedule();
 
 const app = express();
 

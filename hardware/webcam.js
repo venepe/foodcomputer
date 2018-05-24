@@ -1,7 +1,20 @@
 import moment from 'moment';
 import NodeWebcam from 'node-webcam';
 import path from 'path';
-const imagesDir = path.join(__dirname, '../', 'images');;
+import request from 'request';
+import fs from 'fs';
+import config from '../config';
+const imagesDir = path.join(__dirname, '../', 'images');
+
+function uploadSnapshot(filename, createdAt) {
+  const url = `${config.BASE_URL}/snapshots`;
+  const formData = {
+    createdAt,
+    image: fs.createReadStream(filename),
+  };
+
+  return request.post({url, formData});
+}
 
 export function capturePicture() {
   const webcam = NodeWebcam.create({
@@ -13,7 +26,7 @@ export function capturePicture() {
     output: 'jpeg',
     device: false,
     callbackReturn: 'location',
-    verbose: false
+    verbose: false,
   });
   const now = moment.utc().format();
   const filename = `${imagesDir}/${now}`;
@@ -23,6 +36,13 @@ export function capturePicture() {
       console.log(`Webcam error: ${err}`);
     } else {
       console.log(`Webcam captured: ${data}`);
+      uploadSnapshot(filename, now)
+        .then((result) => {
+          console.log(result);
+        })
+        catch((error) => {
+          console.log(error);
+        });
     }
   });
 }
