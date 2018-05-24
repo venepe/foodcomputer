@@ -20,6 +20,7 @@
     "onoff": "^3.0.2",
     "redux": "^4.0.0",
     "request": "^2.87.0",
+    "request-promise": "^4.2.2",
     "si7021-sensor": "^0.0.7"
   },
   "devDependencies": {
