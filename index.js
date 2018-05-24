@@ -5,12 +5,12 @@ import path from 'path';
 import { initStore } from './store'
 // import { startLightSchedule, startThermostatSchedule,
 //   startWebCamSchedule, startLoggingSensorsSchedule } from './scheduler';
-import webcam from './hardware/webcam';
+import { capturePicture } from './hardware/webcam';
 const port = 8080;
 
 initStore();
 
-webcam.capturePicture();
+capturePicture();
 
 // startLightSchedule();
 // startThermostatSchedule();
