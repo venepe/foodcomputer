@@ -6,6 +6,8 @@ import fs from 'fs';
 import config from '../config';
 const imagesDir = path.join(__dirname, '../', 'images');
 
+console.log(config.BASE_URL);
+
 function uploadSnapshot(filename, createdAt) {
   const url = `${config.BASE_URL}/snapshots`;
   const formData = {
