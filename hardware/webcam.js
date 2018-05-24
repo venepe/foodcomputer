@@ -40,7 +40,7 @@ export function capturePicture() {
         .then((result) => {
           console.log(result);
         })
-        catch((error) => {
+        .catch((error) => {
           console.log(error);
         });
     }
