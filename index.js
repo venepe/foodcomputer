@@ -6,11 +6,14 @@ import { initStore } from './store'
 // import { startLightSchedule, startThermostatSchedule,
 //   startWebCamSchedule, startLoggingSensorsSchedule } from './scheduler';
 import { capturePicture } from './hardware/webcam';
+import { logSensors } from './logger';
 const port = 8080;
 
 initStore();
 
 capturePicture();
+
+logSensors();
 
 // startLightSchedule();
 // startThermostatSchedule();
