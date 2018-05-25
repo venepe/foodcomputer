@@ -13,7 +13,14 @@ initStore();
 
 capturePicture();
 
-logSensors();
+function loopSensor() {
+  logSensors();
+  setTimeout(() => {
+    loopSensor();
+  }, 2000);
+}
+
+loopSensor();
 
 // startLightSchedule();
 // startThermostatSchedule();

@@ -1,14 +1,21 @@
 import axios from 'axios';
 import moment from 'moment';
+import csvWriter from 'csv-write-stream';
+import fs from 'fs';
 import { read } from '../hardware/thermostat';
 import config from '../config';
 
 export function logData(name, status, attribute, value, comment) {
   const now = moment.utc().format();
+  logFile(now, name, status, attribute, value, comment);
 }
 
 export function logFile(timestamp, name, status, attribute, value, comment) {
   console.log(timestamp, name, status, attribute, value, comment);
+  const writer = csvWriter();
+  writer.pipe(fs.createWriteStream(config.CSV_FILENAME));
+  writer.write({ timestamp, name, status, attribute, value, comment });
+  writer.end();
 }
 
 export function logDB(timestamp, name, status, attribute, value, comment) {
