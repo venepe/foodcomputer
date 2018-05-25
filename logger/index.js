@@ -20,7 +20,7 @@ export function logSensors() {
   let now;
   let temperature_C;
   read().then((data) => {
-    { humidity, temperature_C } = data;
+    const { humidity, temperature_C } = data;
     now = moment.utc().format();
 
     logData('si7921_top', 'Success', 'temperature', temperature_C, '');
