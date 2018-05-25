@@ -13,7 +13,7 @@ export function logData(name, status, attribute, value, comment) {
 export function logFile(timestamp, name, status, attribute, value, comment) {
   const logs = [timestamp, name, status, attribute, value, comment];
   const logStream = fs.createWriteStream(config.CSV_FILENAME, {'flags': 'a'});
-  logStream.write(`${logs.join}\n`);
+  logStream.write(`${logs.join()}\n`);
   logStream.end();
 }
 
