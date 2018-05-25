@@ -39,12 +39,12 @@ export function capturePicture() {
   const now = moment.utc().format();
   const filename = `${imagesDir}/${now}`;
 
-  webcam.capture(filename, (err, data) => {
+  webcam.capture(filename, (err, result) => {
     if (err) {
       console.log(`Webcam error: ${err}`);
     } else {
-      console.log(`Webcam captured: ${data}`);
-      uploadSnapshot(filename, now)
+      console.log(`Webcam captured: ${result}`);
+      uploadSnapshot(result, now)
         .then((result) => {
           console.log(result);
         })
