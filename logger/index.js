@@ -11,14 +11,10 @@ export function logData(name, status, attribute, value, comment) {
 }
 
 export function logFile(timestamp, name, status, attribute, value, comment) {
-  console.log(timestamp, name, status, attribute, value, comment);
-  const writer = csvWriter({ sendHeaders:
-    false, headers: [
-      'timestamp', 'name', 'status', 'attribute', 'value', 'comment'
-    ]});
-  writer.pipe(fs.createWriteStream(config.CSV_FILENAME, { flags: 'a' }));
-  writer.write(timestamp, name, status, attribute, value, comment);
-  writer.end();
+  const logs = [timestamp, name, status, attribute, value, comment];
+  const logStream = fs.createWriteStream(config.CSV_FILENAME, {'flags': 'a'});
+  logStream.write(`${logs.join}\n`);
+  logStream.end();
 }
 
 export function logDB(timestamp, name, status, attribute, value, comment) {
