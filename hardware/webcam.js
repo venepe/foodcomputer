@@ -58,6 +58,7 @@ export function capturePicture() {
       }
     } else {
       console.log(`Webcam captured: ${result}`);
+      resetErrorCount();
       uploadSnapshot(result, now)
         .then((result) => {
           console.log(result);
