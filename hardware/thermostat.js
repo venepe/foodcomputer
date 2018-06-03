@@ -1,5 +1,6 @@
 import { Gpio } from 'onoff';
 import Si7021 from 'si7021-sensor';
+import { logData } from '../logger';
 import { setCurrentTemp, setIsFanOn } from '../actions';
 import constants from '../constants';
 import { getStore, getCurrentTemp, isFanOn } from '../store';
