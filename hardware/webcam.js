@@ -5,8 +5,16 @@ import rp from 'request-promise';
 import fs from 'fs';
 import config from '../config';
 const imagesDir = path.join(__dirname, '../', 'images');
+const maxErrorCount = 5;
+let errorCount = 0;
 
-console.log(config.BASE_URL);
+function resetErrorCount() {
+  errorCount = 0;
+}
+
+function incrementErrorCount() {
+  errorCount += 1;
+}
 
 function uploadSnapshot(filename, createdAt) {
   const uri = `${config.BASE_URL}/snapshots`;
@@ -42,6 +50,12 @@ export function capturePicture() {
   webcam.capture(filename, (err, result) => {
     if (err) {
       console.log(`Webcam error: ${err}`);
+      if (errorCount < maxErrorCount) {
+        incrementErrorCount();
+        capturePicture();
+      } else {
+        resetErrorCount();
+      }
     } else {
       console.log(`Webcam captured: ${result}`);
       uploadSnapshot(result, now)
