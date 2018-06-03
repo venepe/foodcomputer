@@ -68,7 +68,7 @@ export function startLoggingSensorsSchedule() {
 
   // Log the sensors every 20 minutes
   new CronJob('*/20 * * * *', () => {
-    capturePicture();
+    logSensors();
   }, () => {
     console.log('Logging Sensors schedule cron job stopped');
   },
