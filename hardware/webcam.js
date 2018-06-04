@@ -3,6 +3,7 @@ import NodeWebcam from 'node-webcam';
 import path from 'path';
 import rp from 'request-promise';
 import fs from 'fs';
+import del from 'del';
 import config from '../config';
 const imagesDir = path.join(__dirname, '../', 'images');
 const maxErrorCount = 5;
@@ -62,6 +63,7 @@ export function capturePicture() {
       uploadSnapshot(result, now)
         .then((result) => {
           console.log(result);
+          del([filename]);
         })
         .catch((error) => {
           console.log(error);
